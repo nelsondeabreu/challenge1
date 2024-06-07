@@ -9,9 +9,7 @@ export default function Home() {
 
       <div className="m-auto">
         <Header/>
-        <Card/>
-        <Card/>
-        <Card/>
+        
       </div>
       
     </main>

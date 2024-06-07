@@ -3,6 +3,7 @@ import Image from "next/image";
 import Avatar from '../../public/christian-buehner-DItYlc26zVI-unsplash.jpg'
 import Link from "next/link";
 
+
 export function Sidebar() {
     return(
         <div className="flex h-screen bg-[#1F213A] flex-col items-center justify-between p-8
