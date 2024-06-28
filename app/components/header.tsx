@@ -1,17 +1,16 @@
 'use client'
 import { ChevronDown, Plus } from "lucide-react";
 import { Button, Dialog, Text } from "@radix-ui/themes";
-import {useState, ChangeEvent} from 'react'
+import {useState, ChangeEvent, useEffect} from 'react'
+import { getLocalStorage, setLocalStorage } from "./utils/localStorage";
 interface TasksProps {
     name: string;
     date: string;
     amount: number;
   }
 
-  
-
 export function Header() {
-    const [tasks, setTasks] = useState<TasksProps[]>([]);
+
   const [newtask, setNewtask] = useState<TasksProps>({ name: '', date: '', amount: 0 });
   
   function handleNameChange(e: ChangeEvent<HTMLInputElement>) {
@@ -27,8 +26,12 @@ export function Header() {
   }
 
   const addTask = () => {
-    setTasks([...tasks, newtask]);
-    setNewtask({ name: '', date: '', amount: 0 });
+    const itemslocal = getLocalStorage('bd_chall1') || []
+    const updateItems = [...itemslocal, newtask]
+
+    setLocalStorage('bd_chall1', updateItems)
+    window.location.reload()
+    
   }
     return(
         <div className="flex items-center justify-between gap-40">
@@ -84,7 +87,7 @@ export function Header() {
                 </label>
                 <label className="mb-8">
                   <Text as="div" size="2" mb="1" weight="bold" className="text-white">
-                    Data
+                    Amount
                   </Text>
                   <input 
                     type="number" 
